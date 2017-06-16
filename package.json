@@ -1,0 +1,16 @@
+{
+  "name": "zebra",
+  "version": "1.0.0",
+  "description": "",
+  "main": "zebra.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node zebra.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "node-fetch": "^1.7.1"
+  }
+}
