@@ -1,5 +1,4 @@
-//var fetch = require('node-fetch');
-const { execFile } = require('child_process');
+const { exec } = require('child_process');
 var express = require('express')
 var app = express();
 var bodyParser = require('body-parser')
@@ -17,7 +16,7 @@ app.use(function (req,res,next) {
 })
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
-	extended : false
+	extended : true
 }));
 
 
@@ -26,7 +25,7 @@ app.get('',function (req,res) {
 })
 app.post('/setCadena',function (req,res) {
 	var cadena = req.body.params.zpl;
-	//Cambiar `diego` por el nombre de su computadora
+	//Cambiar `diego` por el nombre de usuario
 	fs.writeFile('C:\\Users\\diego\\Documents\\zebra.zpl', cadena , (err) => {
 		if(err){
 			res.send(JSON.stringify({ msg : err }));
@@ -37,28 +36,21 @@ app.post('/setCadena',function (req,res) {
 })
 
 app.get('/imprimirZpl',function(req,res){
-	fs.open('C:\\Users\\diego\\Documents\\zebra.zpl','r',function (err,fd) {
-		if (err) throw err;
-		console.log(fd);
-	});
+	//Cambiar `diego` por el nombre de usuario
+	exec('C:\\Users\\diego\\Documents\\zpl.bat', (error, stdout, stderr) => {
+		if (error) {
+			throw error;
+		}
+		console.log(stdout);
+		res.send(JSON.stringify( { msg : 'Imprimiendo' } ))
 
-	console.log('Impriendo');
-	res.send(JSON.stringify( { msg : 'Imprimiendo' } ))
+	})
 })
-/*const child = execFile('print', ['C:\\Users\\diego\\Documents\\zebra.zpl','/D:LPT2'], (error, stdout, stderr) => {
-	if (error) {
-		throw error;
-	}
-	console.log(stdout);
-});*/
+
 
 app.listen(3000,function() {
 	console.log('Listen Port 3000')
 });
 
 
-//fs.open('C:\\Users\\diego\\Documents\\zebra.txt','r',function (err,fd) {
-//	console.log(err);
-//	console.log(fd);
-//});
 
