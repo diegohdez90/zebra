@@ -10,7 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.17.2",
-    "node-fetch": "^1.7.1"
+    "body-parser": "^1.17.2"
   }
 }
